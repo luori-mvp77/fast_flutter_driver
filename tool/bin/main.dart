@@ -61,7 +61,7 @@ Future<void> main(List<String> paths) async {
   exitCode = 0;
 }
 
-Future<String> _testFile(String path, Logger logger) async {
+Future<String?> _testFile(String path, Logger logger) async {
   if (File(path).existsSync()) {
     return path;
   } else if (Directory(path).existsSync()) {
