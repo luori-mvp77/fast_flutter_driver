@@ -8,7 +8,7 @@ import '../bin/main.dart' as main_file;
 
 void main() {
   test('deletes screenshots if the folder exists and passing the flag', () {
-    Directory directory;
+    late Directory directory;
 
     IOOverrides.runZoned(
       () async {

@@ -18,5 +18,5 @@ String get _nativeResolutionFile {
     return 'linux/main.cc';
   }
   assert(false);
-  return null;
+  throw ArgumentError('Not supported platform');
 }

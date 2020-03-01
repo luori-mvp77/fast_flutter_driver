@@ -11,7 +11,7 @@ class FlutterCommand {
   String attach(String debugUri, String device) =>
       'flutter attach -d $device --debug-uri $debugUri';
 
-  String dart(String file, [Map<String, String> arguments]) {
+  String dart(String file, [Map<String, String>? arguments]) {
     final args = arguments?.entries
         ?.map((entry) =>
             '${entry.key}${entry.value.isNotEmpty ? ' ${entry.value}' : ''}')

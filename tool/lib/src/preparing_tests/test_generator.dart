@@ -6,7 +6,7 @@ import 'package:fast_flutter_driver_tool/src/preparing_tests/file_system.dart';
 const aggregatedTestFile = 'generic_test.dart';
 const setupMainFile = 'generic.dart';
 
-Future<String> aggregatedTest(String directoryPath, Logger logger) async {
+Future<String?> aggregatedTest(String directoryPath, [Logger? logger]) async {
   final setupFile = File(platformPath('$directoryPath/generic/$setupMainFile'));
   if (!setupFile.existsSync()) {
     return null;
@@ -23,11 +23,11 @@ Future<String> aggregatedTest(String directoryPath, Logger logger) async {
 }
 
 Future<void> _generateTestFile(File test) {
-  final testFiles = Directory(test.parent.parent.path)
+  final List<String> testFiles = Directory(test.parent.parent.path)
       .listSync(recursive: true)
       .where((file) => file.path.endsWith('_test.dart'))
       .where((file) => !file.path.endsWith(aggregatedTestFile))
-      .map((file) => file.path)
+      .map<String>((file) => file.path)
       .toList(growable: false);
   return _writeGeneratedTest(testFiles, test);
 }

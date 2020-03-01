@@ -15,12 +15,11 @@ import 'package:fast_flutter_driver_tool/src/preparing_tests/parameters.dart';
 import 'package:fast_flutter_driver_tool/src/preparing_tests/resolution.dart';
 import 'package:fast_flutter_driver_tool/src/running_tests/parameters.dart';
 import 'package:fast_flutter_driver_tool/src/utils/enum.dart';
-import 'package:meta/meta.dart';
 
 Future<void> setUp(
   ArgResults args,
   Future<void> Function() test, {
-  @required Logger logger,
+  required Logger logger,
 }) async {
   final String screenResolution = args[resolutionArg];
   if (Platform.isMacOS || screenResolution == null) {
@@ -32,18 +31,17 @@ Future<void> setUp(
 }
 
 Future<void> test({
-  @required streams.OutputFactory outputFactory,
-  @required streams.InputFactory inputFactory,
-  @required command_line.RunCommand run,
-  @required Logger logger,
-  @required String testFile,
-  @required bool withScreenshots,
-  @required String resolution,
-  String language,
-  @required String device,
-  @required TestPlatform platform,
+  required streams.OutputFactory outputFactory,
+  required streams.InputFactory inputFactory,
+  required command_line.RunCommand run,
+  required Logger logger,
+  required String testFile,
+  required bool withScreenshots,
+  required String resolution,
+  required String language,
+  required String device,
+  required TestPlatform platform,
 }) async {
-  assert(testFile != null);
   logger.stdout('Testing $testFile');
   final mainFile = _mainDartFile(testFile);
   final input = inputFactory();
@@ -82,7 +80,7 @@ Future<String> _buildAndRun(
 ) {
   final completer = Completer<String>();
   final buildProgress = logger.progress('Building application for $device');
-  Progress syncingProgress;
+  Progress? syncingProgress;
 
   final output = outputFactory((String line) async {
     if (line.contains('Syncing files to')) {

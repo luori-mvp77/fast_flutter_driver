@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:fast_flutter_driver_tool/src/preparing_tests/file_system.dart';
-import 'package:meta/meta.dart';
 
 Future<void> overrideResolution(
   String resolution,
@@ -35,9 +34,9 @@ Future<void> overrideResolution(
 }
 
 Future<void> _updateResolution({
-  @required int width,
-  @required int height,
-  @required String filePath,
+  required int width,
+  required int height,
+  required String filePath,
 }) async {
   final read = await File(filePath).readAsString();
   final updatedNativeFile = _replaceResolution(
@@ -50,8 +49,8 @@ Future<void> _updateResolution({
 
 String _replaceResolution(
   String nativeContent, {
-  @required int width,
-  @required int height,
+  required int width,
+  required int height,
 }) {
   if (Platform.isWindows) {
     return nativeContent
@@ -75,5 +74,5 @@ String _replaceResolution(
         );
   }
   assert(false);
-  return null;
+  throw ArgumentError('Not supported platform for resolution');
 }

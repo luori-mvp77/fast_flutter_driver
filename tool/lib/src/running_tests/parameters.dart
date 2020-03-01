@@ -40,14 +40,14 @@ extension TestPlatformEnum on TestPlatform {
 }
 
 abstract class TestPlatformEx {
-  static TestPlatform fromString(String value) {
-    switch (value?.toLowerCase()) {
+  static TestPlatform fromString(String? value) {
+    switch (value?.toLowerCase() ?? 'none') {
       case 'android':
         return TestPlatform.android;
       case 'ios':
         return TestPlatform.iOS;
       default:
-        return null;
+        throw ArgumentError('Unsupported test platform: $value');
     }
   }
 }
